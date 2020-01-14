@@ -115,12 +115,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func zoomInOut(_ sender: UIStepper) {
         if sender.value > oldValue {
             oldValue += 1
-            let span = MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta/2, longitudeDelta: mapView.region.span.longitudeDelta/2)
+            let span = MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta / 2, longitudeDelta: mapView.region.span.longitudeDelta / 2)
             let region = MKCoordinateRegion(center: mapView.region.center, span: span)
             mapView.setRegion(region, animated: true)
         } else {
             oldValue -= 1
-            let span = MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta*2, longitudeDelta: mapView.region.span.longitudeDelta*2)
+            let span = MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta * 2, longitudeDelta: mapView.region.span.longitudeDelta * 2)
             let region = MKCoordinateRegion(center: mapView.region.center, span: span)
             mapView.setRegion(region, animated: true)
         }
