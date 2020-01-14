@@ -32,14 +32,37 @@
                                     <action selector="getRouteButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IlL-DD-gup"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="R6n-42-IeX">
+                                <rect key="frame" x="117.5" y="108" width="179" height="32"/>
+                                <segments>
+                                    <segment title="Automobile"/>
+                                    <segment title="Walking"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" red="0.91893362999999995" green="0.66075426339999999" blue="0.2704578936" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="segmentChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="8sx-3u-PEJ"/>
+                                </connections>
+                            </segmentedControl>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="XKn-NW-LBB">
+                                <rect key="frame" x="20" y="825" width="94" height="32"/>
+                                <color key="backgroundColor" red="0.91893362999999995" green="0.66075426339999999" blue="0.2704578936" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="zoomInOut:" destination="BYZ-38-t0r" eventType="valueChanged" id="Cuv-17-DQp"/>
+                                </connections>
+                            </stepper>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="ibk-dK-0VG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Bvj-cg-Hvq"/>
+                            <constraint firstItem="R6n-42-IeX" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="MBm-Aw-U6r"/>
                             <constraint firstItem="ibk-dK-0VG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PZe-ID-wCz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ibk-dK-0VG" secondAttribute="trailing" id="QTe-FQ-eSW"/>
                             <constraint firstAttribute="bottom" secondItem="D3Q-P3-cAV" secondAttribute="bottom" constant="30" id="Zlu-o1-tOz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="D3Q-P3-cAV" secondAttribute="trailing" constant="30" id="bUp-n7-7Y7"/>
+                            <constraint firstItem="R6n-42-IeX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="bsN-Nt-ZaD"/>
+                            <constraint firstItem="XKn-NW-LBB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gjU-oy-kYo"/>
+                            <constraint firstItem="XKn-NW-LBB" firstAttribute="centerY" secondItem="D3Q-P3-cAV" secondAttribute="centerY" id="pMV-M9-MgH"/>
                             <constraint firstAttribute="bottom" secondItem="ibk-dK-0VG" secondAttribute="bottom" id="u6k-sh-wFQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

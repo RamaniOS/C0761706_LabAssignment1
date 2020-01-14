@@ -11,19 +11,23 @@ import MapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
+    // IBOutlets
     @IBOutlet weak var mapView: MKMapView!
-    var userLocation: CLLocationCoordinate2D?
-    var destination: CLLocationCoordinate2D?
     
-    
+    // Varibales
+    private var userLocation: CLLocationCoordinate2D?
+    private var destination: CLLocationCoordinate2D?
     private var locationManager = CLLocationManager()
+    private let request = MKDirections.Request()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
     }
     
+    // Initviews
     private func initViews() {
+        request.transportType = .automobile
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         // Check for Location Services
@@ -31,16 +35,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.requestAlwaysAuthorization()
             locationManager.requestWhenInUseAuthorization()
         }
-        //Zoom to user location
         if let userLocation = locationManager.location?.coordinate {
             self.userLocation = userLocation
         }
+        // Double tap gesture
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapPress))
         tapGesture.numberOfTapsRequired = 2
         mapView.addGestureRecognizer(tapGesture)
         locationManager.startUpdatingLocation()
     }
     
+    // Tap gesture Recognizer
     @objc func tapPress(gestureRecognizer: UIGestureRecognizer) {
         mapView.removeAnnotations(mapView.annotations)
         mapView.removeOverlays(mapView.overlays)
@@ -54,10 +59,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.destination = coordinate
     }
     
-    @IBAction func getRouteButtonClicked(_ sender: Any) {
-        getRoute()
-    }
-    
+    // Location manager delegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation: CLLocation = locations[0]
         let lat = userLocation.coordinate.latitude
@@ -71,15 +73,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         mapView.setRegion(region, animated: true)
     }
     
+    // Get route
     func getRoute() {
         guard let currentLocation = userLocation, let destination = destination else {
             return
         }
-        let request = MKDirections.Request()
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: currentLocation, addressDictionary: nil))
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
         request.requestsAlternateRoutes = true
-        request.transportType = .automobile
         let directions = MKDirections(request: request)
         directions.calculate { [unowned self] response, error in
             guard let unwrappedResponse = response else {
@@ -92,6 +93,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    // Actions
+    @IBAction func getRouteButtonClicked(_ sender: Any) {
+        getRoute()
+    }
+    
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        mapView.removeOverlays(mapView.overlays)
+        switch sender.selectedSegmentIndex {
+            case 0: // Automobile
+                request.transportType = .automobile
+            case 1: // Walking
+                request.transportType = .walking
+            default: break
+        }
+    }
+    
+    @IBAction func zoomInOut(_ sender: UIStepper) {
+        //mapView.zoo
+    }
 }
 
 extension UIViewController: MKMapViewDelegate {
