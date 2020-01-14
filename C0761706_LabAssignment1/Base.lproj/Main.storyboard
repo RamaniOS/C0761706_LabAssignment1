@@ -43,7 +43,7 @@
                                     <action selector="segmentChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="8sx-3u-PEJ"/>
                                 </connections>
                             </segmentedControl>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="XKn-NW-LBB">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="XKn-NW-LBB">
                                 <rect key="frame" x="20" y="825" width="94" height="32"/>
                                 <color key="backgroundColor" red="0.91893362999999995" green="0.66075426339999999" blue="0.2704578936" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -70,6 +70,7 @@
                     <navigationItem key="navigationItem" title="Find My Way" id="UAo-yJ-mtO"/>
                     <connections>
                         <outlet property="mapView" destination="ibk-dK-0VG" id="NEm-ur-xqW"/>
+                        <outlet property="stepper" destination="XKn-NW-LBB" id="8Z5-Bm-B5r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

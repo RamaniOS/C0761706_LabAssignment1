@@ -13,8 +13,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     // IBOutlets
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var stepper: UIStepper!
     
     // Varibales
+    var oldValue: Double = 0
     private var userLocation: CLLocationCoordinate2D?
     private var destination: CLLocationCoordinate2D?
     private var locationManager = CLLocationManager()
@@ -27,6 +29,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     // Initviews
     private func initViews() {
+        oldValue = stepper.value
         request.transportType = .automobile
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -110,7 +113,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func zoomInOut(_ sender: UIStepper) {
-        //mapView.zoo
+        if sender.value > oldValue {
+            oldValue += 1
+            let span = MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta/2, longitudeDelta: mapView.region.span.longitudeDelta/2)
+            let region = MKCoordinateRegion(center: mapView.region.center, span: span)
+            mapView.setRegion(region, animated: true)
+        } else {
+            oldValue -= 1
+            let span = MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta*2, longitudeDelta: mapView.region.span.longitudeDelta*2)
+            let region = MKCoordinateRegion(center: mapView.region.center, span: span)
+            mapView.setRegion(region, animated: true)
+        }
     }
 }
 
