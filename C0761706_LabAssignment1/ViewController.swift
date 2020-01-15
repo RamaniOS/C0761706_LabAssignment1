@@ -16,7 +16,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var stepper: UIStepper!
     
     // Varibales
-    var oldValue: Double = 0
+    private var oldValue: Double = 0
     private var userLocation: CLLocationCoordinate2D?
     private var destination: CLLocationCoordinate2D?
     private var locationManager = CLLocationManager()
