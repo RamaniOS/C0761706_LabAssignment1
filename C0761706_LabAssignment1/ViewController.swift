@@ -110,6 +110,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 request.transportType = .walking
             default: break
         }
+        getRoute()
     }
     
     @IBAction func zoomInOut(_ sender: UIStepper) {
@@ -131,7 +132,7 @@ extension UIViewController: MKMapViewDelegate {
     
     public func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
-        renderer.strokeColor = UIColor.blue
+        renderer.strokeColor = UIColor.red.withAlphaComponent(0.65)
         return renderer
     }
 }
