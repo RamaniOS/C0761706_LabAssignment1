@@ -98,7 +98,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     // Actions
     @IBAction func getRouteButtonClicked(_ sender: Any) {
-        getRoute()
+        makeRoute()
+    }
+    
+    func makeRoute() {
+        if mapView.overlays.count == 0 {
+            getRoute()
+        }
     }
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
@@ -110,7 +116,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             request.transportType = .walking
         default: break
         }
-        getRoute()
+        makeRoute()
     }
     
     @IBAction func zoomInOut(_ sender: UIStepper) {
