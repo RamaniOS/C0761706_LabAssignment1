@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     // IBOutlets
     @IBOutlet weak var mapView: MKMapView!
@@ -20,7 +20,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     private var userLocation: CLLocationCoordinate2D?
     private var destination: CLLocationCoordinate2D?
     private var locationManager = CLLocationManager()
-    private let request = MKDirections.Request()
+    fileprivate let request = MKDirections.Request()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,11 +128,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
 }
 
-extension UIViewController: MKMapViewDelegate {
+extension MapViewController: MKMapViewDelegate {
     
     public func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
         renderer.strokeColor = UIColor.red.withAlphaComponent(0.65)
+        if self.request.transportType == .walking {
+            renderer.lineDashPattern = [0, 10]
+        }
         return renderer
     }
 }
