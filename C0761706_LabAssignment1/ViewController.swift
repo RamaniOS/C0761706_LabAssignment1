@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
-
+    
     // IBOutlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var stepper: UIStepper!
@@ -104,11 +104,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         mapView.removeOverlays(mapView.overlays)
         switch sender.selectedSegmentIndex {
-            case 0: // Automobile
-                request.transportType = .automobile
-            case 1: // Walking
-                request.transportType = .walking
-            default: break
+        case 0: // Automobile
+            request.transportType = .automobile
+        case 1: // Walking
+            request.transportType = .walking
+        default: break
         }
         getRoute()
     }
